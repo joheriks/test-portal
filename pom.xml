@@ -15,121 +15,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pluto.version>3.1.0</pluto.version>
         <tomcat.version>8.0.53</tomcat.version>
-        <springframework.version>5.1.5.RELEASE</springframework.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-web</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.portals.pluto</groupId>
+            <artifactId>pluto-portal</artifactId>
+            <version>${pluto.version}</version>
+            <type>war</type>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.portals.pluto</groupId>
             <artifactId>pluto-container</artifactId>
             <version>${pluto.version}</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.portals.pluto</groupId>
-                    <artifactId>pluto-container-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-jsp-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-servlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.portlet</groupId>
-                    <artifactId>portlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.portals.pluto</groupId>
-            <artifactId>pluto-portal-driver</artifactId>
-            <version>${pluto.version}</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-jsp-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-servlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.portals.pluto</groupId>
-            <artifactId>pluto-portal-driver-impl</artifactId>
-            <version>${pluto.version}</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-jsp-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>tomcat-servlet-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -237,58 +138,10 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.5</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <artifactId>junit</artifactId>
-            <groupId>junit</groupId>
-            <version>4.12</version>
-        </dependency>
     </dependencies>
+
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <filtering>true</filtering>
-                            <directory>${pom.basedir}/src/main/resources
-                            </directory>
-                            <includes>
-                                <include>pluto-portal-driver-config.xml
-                                </include>
-                            </includes>
-                            <targetPath>WEB-INF</targetPath>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-
-            <!-- Don't attach source or javadoc archive -->
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <attach>false</attach>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
@@ -302,6 +155,8 @@
                             <version>${tomcat.version}</version>
                         </artifactInstaller>
 
+                        <!-- add below to Tomcat's shared libraries, as they are
+                         required by Pluto portal -->
                         <dependencies>
                             <dependency>
                                 <groupId>org.apache.portals.pluto</groupId>
@@ -385,12 +240,29 @@
                         <properties>
                             <cargo.servlet.port>8080</cargo.servlet.port>
                             <cargo.logging>medium</cargo.logging>
+                            <cargo.servlet.users>
+                                tomcat:tomcat:tomcat,pluto,manager-gui
+                                | pluto:pluto:pluto,manager-gui,tckuser
+                            </cargo.servlet.users>
                         </properties>
                     </configuration>
+
                     <deployables>
+                        <!-- Deploy this portlet servlet under context /testsuite,
+                         since Pluto portal by default includes testsuite.TestPortlet1 -->
                         <deployable>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>${project.artifactId}</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/testsuite</context>
+                            </properties>
+                        </deployable>
+
+                        <!-- Deploy Pluto portal -->
+                        <deployable>
+                            <groupId>org.apache.portals.pluto</groupId>
+                            <artifactId>pluto-portal</artifactId>
                             <type>war</type>
                             <properties>
                                 <context>/pluto</context>
