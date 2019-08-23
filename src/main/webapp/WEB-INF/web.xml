@@ -4,23 +4,5 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
-  <display-name>Test Portlet</display-name>
-
-  <servlet>
-    <servlet-name>TestPortlet1</servlet-name>
-    <servlet-class>org.apache.pluto.container.driver.PortletServlet</servlet-class>
-    <init-param>
-      <param-name>portlet-name</param-name>
-      <param-value>TestPortlet1</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>TestPortlet1</servlet-name>
-    <url-pattern>/PlutoInvoker/TestPortlet1</url-pattern>
-  </servlet-mapping>
-
 </web-app>
 
