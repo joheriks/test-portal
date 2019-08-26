@@ -1,16 +1,13 @@
-package org.vaadin.joheriks.portlet;
+package com.vaadin.starter.portlet;
 
-import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.portal.VaadinPortlet;
 
-public class PortletContent extends VerticalLayout {
+public class MyPortletContent extends VerticalLayout {
 
-    public PortletContent() {
+    public MyPortletContent() {
         VaadinPortlet portlet = VaadinPortlet.getCurrent();
         String name = portlet.getPortletName();
         String serverInfo = portlet.getPortletContext().getServerInfo();

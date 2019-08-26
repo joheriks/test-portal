@@ -10,14 +10,14 @@
         <portlet-name>TestPortlet1</portlet-name>
         <display-name>Testing Portlet</display-name>
         <portlet-class>
-            org.vaadin.joheriks.portlet.TestPortlet
+            com.vaadin.starter.portlet.MyPortlet
         </portlet-class>
         <supports>
             <mime-type>text/html</mime-type>
             <portlet-mode>VIEW</portlet-mode>
         </supports>
         <portlet-info>
-            <title>Test portlet!</title>
+            <title>Test portlet</title>
         </portlet-info>
     </portlet>
 

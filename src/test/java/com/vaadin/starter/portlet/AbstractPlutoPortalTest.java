@@ -1,4 +1,4 @@
-package org.vaadin.joheriks.portlet;
+package com.vaadin.starter.portlet;
 
 import org.junit.Assert;
 import org.junit.Before;
