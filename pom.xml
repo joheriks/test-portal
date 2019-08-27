@@ -426,23 +426,6 @@
                                 </deployable>
                             </deployables>
                         </configuration>
-
-                        <!--executions>
-                            <execution>
-                                <id>start-portal</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>start</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>stop-portal</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>stop</goal>
-                                </goals>
-                            </execution>
-                        </executions-->
                     </plugin>
 
                 </plugins>
@@ -511,7 +494,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

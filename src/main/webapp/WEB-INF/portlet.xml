@@ -16,9 +16,24 @@
             <mime-type>text/html</mime-type>
             <portlet-mode>VIEW</portlet-mode>
         </supports>
+
         <portlet-info>
-            <title>Test portlet</title>
+            <title>Test Portlet - TestPortlet1</title>
+            <short-title>Flow TestPortlet1</short-title>
+            <keywords></keywords>
         </portlet-info>
+        <security-role-ref>
+            <role-name>administrator</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>guest</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
     </portlet>
 
 </portlet-app>
