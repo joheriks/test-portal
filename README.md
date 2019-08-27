@@ -13,7 +13,8 @@ embedded Tomcat 8 serving the Pluto Portal driver:
 
 Visit http://localhost:8080/pluto, and log in as `pluto`, password `pluto`.
 The starter portlet (`TestPortlet1`) appears to the right of the "About" 
-portlet. 
+portlet. Remote debugging (JDWP) is available on port 8000 (to activate
+in IntelliJ, choose `Run -> Attach to Process...`). 
 
 To run the integration tests:
 
