@@ -74,6 +74,13 @@
             <artifactId>flow-client</artifactId>
             <version>${flow.version}</version>
         </dependency>
+        <!-- Added to provide logging output as Flow uses -->
+        <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.28</version>
+        </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>portlet</artifactId>
@@ -146,15 +153,11 @@
         </profile>
 
         <profile>
-            <id>integration-tests</id>
+            <id>demo</id>
 
             <properties>
                 <pluto.version>3.1.0</pluto.version>
                 <tomcat.version>8.0.53</tomcat.version>
-                <drivers.dir>${project.basedir}/drivers</drivers.dir>
-                <drivers.downloader.phase>
-                    pre-integration-test
-                </drivers.downloader.phase>
             </properties>
 
             <dependencies>
@@ -408,6 +411,44 @@
                             </deployables>
                         </configuration>
 
+                        <!--executions>
+                            <execution>
+                                <id>start-portal</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop-portal</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions-->
+                    </plugin>
+
+                </plugins>
+
+            </build>
+        </profile>
+
+        <profile>
+            <id>integration-tests</id>
+
+            <properties>
+                <drivers.dir>${project.basedir}/drivers</drivers.dir>
+                <drivers.downloader.phase>
+                    pre-integration-test
+                </drivers.downloader.phase>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
                         <executions>
                             <execution>
                                 <id>start-portal</id>
@@ -424,29 +465,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.22.2</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <webdriver.chrome.driver>
-                                    ${webdriver.chrome.driver}
-                                </webdriver.chrome.driver>
-                                <trimStackTrace>false</trimStackTrace>
-                                <enableAssertions>true</enableAssertions>
-                            </systemPropertyVariables>
-                        </configuration>
                     </plugin>
 
                     <plugin>
@@ -477,8 +495,31 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
 
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.22.2</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <webdriver.chrome.driver>
+                                    ${webdriver.chrome.driver}
+                                </webdriver.chrome.driver>
+                                <trimStackTrace>false</trimStackTrace>
+                                <enableAssertions>true</enableAssertions>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
 
